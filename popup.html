@@ -1,0 +1,212 @@
+<html>
+<head><title>English Assistant - Quick setup</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>  input:focus {
+        outline: none;
+    }
+
+    .box select {
+        color: white;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        background-image: linear-gradient(to right, #138ae4, #00ceff);
+    }
+
+    .box select option {
+        padding: 20px;
+    }
+
+    .form-group {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .form-group input {
+        padding: 0;
+        height: initial;
+        width: initial;
+        margin-bottom: 0;
+        display: none;
+        cursor: pointer;
+    }
+
+    .form-group label {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .form-group label:before {
+        content: '';
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: 2px solid #0079bf;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+        padding: 10px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .form-group input:checked + label:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 9px;
+        width: 6px;
+        height: 14px;
+        border: solid #0079bf;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .form-group *:before, .form-group *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tabs {
+        position: relative;
+    }
+
+    .tabs__panels {
+        position: relative;
+        margin-top: 15px;
+    }
+
+    .tabs__panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-transition: none;
+        transition: none;
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        width: 100%;
+    }
+
+    .tabs__panel-card {
+        display: -webkit-box;
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    .tabs__panel-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .tabs__panel-content {
+        width: 100%;
+        margin-left: 30px;
+    }
+
+    .tabs__panel-content:first-child {
+        margin-left: 0;
+    }
+
+    .tabs__panel-content:not(:last-child) {
+        margin-right: 30px;
+    }
+
+    .tabs__panel-content:before {
+        margin-bottom: 15px;
+    }
+
+    .service-connetor-content {
+        margin: 0 auto;
+    }
+
+    /*Custom Radio*/
+    [type="radio"]:checked,
+    [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label
+    {
+        position: relative;
+        padding-left: 28px;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        color: #666;
+    }
+    [type="radio"]:checked + label:before,
+    [type="radio"]:not(:checked) + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #ddd;
+        border-radius: 100%;
+        background: #fff;
+    }
+    [type="radio"]:checked + label:after,
+    [type="radio"]:not(:checked) + label:after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: #0079bf;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border-radius: 100%;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+    [type="radio"]:not(:checked) + label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    [type="radio"]:checked + label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    </style>
+</head>
+<body>
+<div style="width: 410px; height:100px; padding-bottom: 50px">
+    <div class="tabs">
+        <div class="tabs__panels">
+            <div class="tabs__panel">
+                <div class="tabs__panel-card">
+                    <div class="tabs__panel-content">
+                        <div class="service-connetor-content" style="text-align: center">
+                            <div style="margin-top: 30px; display: flex; align-items: center; font-size: 16px; justify-content: center;">
+                                <div class="form-group" style="display: flex">
+                                    <div style="margin-right: 20px">
+                                        <input type="checkbox" id="hanviet_bubble" checked name="hanviet_bubble" value="hanviet_bubble">
+                                        <label for="hanviet_bubble">Show HanViet Lookup Bubble?</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+    <div class="button-save-container" style="position: fixed; bottom: 18px; z-index: 10; left: 50%; transform: translateX(-50%);">
+        <button id="saveSetting" style=" display: block; margin: 0 auto; padding: 5px; color: white; background-color: #d8d8d8; border: none; outline: none; border-radius: 30px; padding-top: 14px; padding-bottom: 14px; font-weight: 600; font-size: 15px; background-image: linear-gradient(to right, #138ae4, #00ceff); cursor: pointer; width: 245px; margin-top: 40px">
+            Save
+        </button>
+    </div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
