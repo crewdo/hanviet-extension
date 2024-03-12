@@ -18,12 +18,12 @@ try {
 				document.body.appendChild(elemAbs);
 
 				generatorContainer.id = 'hanviet-generator-container';
-				generatorContainer.innerHTML = `<table id="hanviet-generator-results" style="background: white; border: 1px solid #dddddd; padding: 5px 10px"><tbody>
+				generatorContainer.innerHTML = `<table id="hanviet-generator-results"><tbody>
 											<tr id="hanviet-generator-results--pinyin" style="padding: 0; text-align: center; font-size: 11px"></tr>
 											<tr id="hanviet-generator-results--input" style="padding: 0; text-align: center;"></tr>
-											<tr id="hanviet-generator-results--output" style="padding: 0; text-align: center; font-size: 12px; font-weight: 700"></tr>
+											<tr id="hanviet-generator-results--output" style="padding: 0; text-align: center; font-size: 12px; font-weight: 500"></tr>
 										</tbody></table>`
-				generatorContainer.style.cssText = 'position: absolute; top: -1000px; left: -1000px; z-index: 99999999999; cursor: pointer; font-size: 16px; text-align: center;';
+				generatorContainer.style.cssText = 'position: absolute; top: -1000px; left: -1000px; z-index: 99999999999; cursor: pointer; font-size: 16px; text-align: center; padding: 5px 10px; background: white;box-shadow: 2px 2px;box-shadow: 0 0 10px 0 rgb(0 0 0 / 32%); border-radius: 10px';
 				document.body.appendChild(generatorContainer);
 			});
 	}
