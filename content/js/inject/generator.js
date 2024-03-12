@@ -31,6 +31,9 @@ try {
 	var selectedText = "";
 	document.getElementsByTagName('body')[0].addEventListener('click', function (evt) {
 		if (evt.target.className === "hanviet-generator") {
+			var currentHandler = document.getElementById('hanviet-generator-handler');
+			let currentBubbleYAxis = parseFloat(currentHandler.style.top);
+
 			fadeOnClick();
 			if (selectedText) {
 				selectedText = selectedText.trim();
@@ -73,7 +76,7 @@ try {
 								let popupWidth = document.getElementById('hanviet-generator-container').offsetWidth;
 
 								bubble.style.left = centerOfORect - popupWidth / 2 + "px";
-								bubble.style.top = oRect.y - 63 + "px";
+								bubble.style.top = currentBubbleYAxis - 50 + "px";
 								bubble.style.opacity = 1;
 							}
 						} else {
