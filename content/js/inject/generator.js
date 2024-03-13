@@ -18,7 +18,7 @@ try {
 				document.body.appendChild(elemAbs);
 
 				generatorContainer.id = 'hanviet-generator-container';
-				generatorContainer.innerHTML = `<table id="hanviet-generator-results"><tbody>
+				generatorContainer.innerHTML = `<table id="hanviet-generator-results" style="color: black"><tbody>
 											<tr id="hanviet-generator-results--pinyin" style="padding: 0; text-align: center; font-size: 11px"></tr>
 											<tr id="hanviet-generator-results--input" style="padding: 0; text-align: center;"></tr>
 											<tr id="hanviet-generator-results--output" style="padding: 0; text-align: center; font-size: 12px; font-weight: 500"></tr>
