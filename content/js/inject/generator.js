@@ -1,4 +1,10 @@
 try {
+	function containsChinese(inputString) {
+		const chineseRegex = /[\u3400-\u9FBF]/;
+
+		return chineseRegex.test(inputString);
+	}
+
 	if (! document.getElementById("hanviet-generator-handler")) {
 		chrome.storage.sync.get(
 			['hanviet_bubble'], function (statusObject) {
@@ -14,7 +20,7 @@ try {
 				}
 
 				elemAbs.id = 'hanviet-generator-handler';
-				elemAbs.style.cssText = 'position: absolute; top: -1000px; left: -1000px; z-index: 99999999999; cursor: pointer;';
+				elemAbs.style.cssText = 'position: absolute; top: -10000px; left: -10000px; z-index: 2147483647; cursor: pointer;';
 				document.body.appendChild(elemAbs);
 
 				generatorContainer.id = 'hanviet-generator-container';
@@ -22,8 +28,9 @@ try {
 											<tr id="hanviet-generator-results--pinyin" style="padding: 0; text-align: center; font-size: 11px"></tr>
 											<tr id="hanviet-generator-results--input" style="padding: 0; text-align: center;"></tr>
 											<tr id="hanviet-generator-results--output" style="padding: 0; text-align: center; font-size: 12px; font-weight: 500"></tr>
-										</tbody></table>`
-				generatorContainer.style.cssText = 'position: absolute; top: -1000px; left: -1000px; z-index: 99999999999; cursor: pointer; font-size: 16px; text-align: center; padding: 5px 10px; background: white;box-shadow: 2px 2px;box-shadow: 0 0 10px 0 rgb(0 0 0 / 32%); border-radius: 10px';
+										</tbody></table>
+										<div id="hanviet-generator-close" style="line-height: 1.7; background: white; border: 1px solid #d8d8d8; padding-bottom: 2px; position: absolute; padding-right: 1px; padding-left: 1px; height: 20px; width: 20px; top: -12px; right: -11px; font-size: 12px; border-radius: 20px; cursor: pointer; color: #000;">x</div>`;
+				generatorContainer.style.cssText = 'position: absolute; top: -10000px; left: -10000px; z-index: 2147483646; cursor: pointer; font-size: 16px; text-align: center; padding: 5px 10px; background: white;box-shadow: 2px 2px;box-shadow: 0 0 10px 0 rgb(0 0 0 / 32%); border-radius: 10px';
 				document.body.appendChild(generatorContainer);
 			});
 	}
@@ -37,7 +44,7 @@ try {
 			fadeOnClick();
 			if (selectedText) {
 				selectedText = selectedText.trim();
-				if (selectedText.length > 0) {
+				if (selectedText.length > 0 && containsChinese(selectedText)) {
 					chrome.runtime.sendMessage(null, {
 						cmd: 'hanviet-lookup',
 						text: selectedText
@@ -52,8 +59,9 @@ try {
 									inputRow.innerHTML += `<td style="padding: 0; line-height: 1">${input}</td>`;
 								});
 
+								console.log(rs.hanvietResult.data.result);
 								rs.hanvietResult.data.result.forEach(result => {
-									outputRow.innerHTML += `<td style="padding: 0 2px; line-height: 1.5">${result.o[0] || ' '}</td>`;
+									outputRow.innerHTML += `<td style="padding: 0 2px; line-height: 1.5">${result.hasOwnProperty('o') ? result.o[0] : ' '}</td>`;
 								});
 							}
 
@@ -62,7 +70,7 @@ try {
 								pinyinRow.innerHTML = '';
 
 								rs.pinyinResult.data.result.forEach(result => {
-									pinyinRow.innerHTML += `<td style="padding: 0; line-height: 1.2">${result.o[0] || ' '}</td>`;
+									pinyinRow.innerHTML += `<td style="padding: 0; line-height: 1.2">${result.hasOwnProperty('o') ? result.o[0] : ' '}</td>`;
 								});
 							}
 
@@ -86,6 +94,12 @@ try {
 					});
 				}
 			}
+		} else if (evt.target.id === "hanviet-generator-close") {
+			var resultBubble = document.getElementById('hanviet-generator-container');
+			if (resultBubble) {
+				resultBubble.style.left = '-10000px';
+				resultBubble.style.top = '-10000px';
+			}
 		}
 	});
 
@@ -104,10 +118,12 @@ try {
 			var oRect = oRange.getBoundingClientRect();
 			if (s.toString()) {
 				selectedText = s.toString();
-				if (oRect.x !== 0 && oRect.y !== 0) {
-					updateNoterPosition(oRect.x + oRect.width, oRect.y - 10, selectedText);
-				} else {
-					updateNoterPosition(e.pageX, e.pageY - 10, selectedText)
+				if (containsChinese(selectedText)) {
+					if (oRect.x !== 0 && oRect.y !== 0) {
+						updateNoterPosition(oRect.x + oRect.width, oRect.y - 10, selectedText);
+					} else {
+						updateNoterPosition(e.pageX, e.pageY - 10, selectedText)
+					}
 				}
 			}
 		}
@@ -151,8 +167,8 @@ try {
 		var bubble = document.getElementById('hanviet-generator-handler');
 		if (bubble) {
 			bubble.style.opacity = 0;
-			bubble.style.left = '-1000px';
-			bubble.style.top = '-1000px';
+			bubble.style.left = '-10000px';
+			bubble.style.top = '-10000px';
 		}
 	}
 
@@ -164,8 +180,8 @@ try {
 				bubble.style.opacity = 0;
 				bubble.style.transition = 'visibility 2s, opacity 2s linear';
 				bubble.addEventListener('transitionend', function () {
-					bubble.style.left = '-1000px';
-					bubble.style.top = '-1000px';
+					bubble.style.left = '-10000px';
+					bubble.style.top = '-10000px';
 				}, false);
 			}
 		}, (4000));
